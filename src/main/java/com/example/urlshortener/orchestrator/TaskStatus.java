@@ -1,0 +1,1 @@
+package com.example.urlshortener.orchestrator; public enum TaskStatus { PENDING,RUNNING,WAITING_FOR_APPROVAL,COMPLETED,FAILED,ROLLED_BACK,SKIPPED }

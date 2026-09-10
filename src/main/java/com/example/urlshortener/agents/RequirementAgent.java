@@ -1,0 +1,3 @@
+package com.example.urlshortener.agents;
+import com.example.urlshortener.orchestrator.*; import java.util.*;
+public class RequirementAgent implements Agent { public String name(){return "RequirementAgent";} public AgentResult execute(ExecutionContext c){String r=c.requirement().trim(); boolean ambiguous=r.toLowerCase().matches(".*(fast|secure|better|improve).*" ); c.putArtifact("ambiguityDetected",ambiguous); c.putArtifact("normalizedRequirement",r); if(ambiguous)c.putArtifact("clarifications",List.of("What latency target should we meet?","Which management APIs require authentication?","What traffic/load should we design for?")); return AgentResult.ok(ambiguous?"Requirement normalized; ambiguity detected":"Requirement normalized",Map.of());} }

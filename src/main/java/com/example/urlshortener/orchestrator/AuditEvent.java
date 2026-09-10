@@ -1,0 +1,1 @@
+package com.example.urlshortener.orchestrator; import java.time.Instant; public record AuditEvent(Instant timestamp,String workflowId,String taskId,String event,String detail){}

@@ -1,0 +1,3 @@
+package com.example.urlshortener.orchestrator;
+import org.springframework.stereotype.Component; import java.time.Instant; import java.util.*; import java.util.concurrent.CopyOnWriteArrayList;
+@Component public class AuditTrail { private final List<AuditEvent> events=new CopyOnWriteArrayList<>(); public void record(String w,String t,String e,String d){events.add(new AuditEvent(Instant.now(),w,t,e,d));} public List<AuditEvent> events(String w){return events.stream().filter(x->x.workflowId().equals(w)).toList();} }

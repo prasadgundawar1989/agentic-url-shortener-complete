@@ -1,0 +1,3 @@
+package com.example.urlshortener.agents;
+import com.example.urlshortener.orchestrator.*; import java.util.*;
+public class BrownfieldAnalysisAgent implements Agent { public String name(){return "BrownfieldAnalysisAgent";} public AgentResult execute(ExecutionContext c){c.putArtifact("impactAnalysis",Map.of("modules",List.of("controller","service","repository","orchestrator"),"compatibility","Keep existing URL creation and redirect API contracts stable"));return AgentResult.ok("Existing code impact mapped",Map.of());} }

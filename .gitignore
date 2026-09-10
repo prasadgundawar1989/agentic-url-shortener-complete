@@ -1,0 +1,15 @@
+target/
+.idea/
+*.iml
+*.log
+.DS_Store
+
+# Environment/secrets
+.env
+.env.*
+application-local.yml
+application-local.properties
+
+# Build/output
+out/
+build/

@@ -1,0 +1,3 @@
+package com.example.urlshortener.agents;
+import com.example.urlshortener.orchestrator.*; import java.util.*;
+public class SecurityAgent implements Agent { public String name(){return "SecurityAgent";} public AgentResult execute(ExecutionContext c){c.decision("security","Validate URL scheme, bound inputs, require approvals for high-impact workflow actions, preserve audit events");c.putArtifact("securityChecks",List.of("URL validation","Input bounds","Approval gates","Auditability","Safe stop"));return AgentResult.ok("Security review complete",Map.of());} }

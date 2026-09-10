@@ -1,0 +1,3 @@
+package com.example.urlshortener.agents;
+import com.example.urlshortener.orchestrator.*; import java.util.*;
+public class ImplementationAgent implements Agent { public String name(){return "ImplementationAgent";} public AgentResult execute(ExecutionContext c){c.putArtifact("implementationPlan",List.of("Implement APIs","Persist mappings","Track click analytics","Apply validation","Add orchestration workflow"));return AgentResult.ok("Implementation output generated",Map.of());} }

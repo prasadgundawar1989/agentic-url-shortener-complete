@@ -1,0 +1,2 @@
+package com.example.urlshortener.dto; import com.example.urlshortener.orchestrator.*; import java.util.*;
+public record WorkflowResponse(String workflowId,WorkflowScenario scenario,WorkflowStatus status,String requirement,Map<String,Object> artifacts,Map<String,String> decisions,List<TaskView> tasks,List<AuditEvent> audit){public record TaskView(String id,String name,TaskStatus status,int attempts,List<String> dependencies,boolean requiresApproval,String lastError){}}

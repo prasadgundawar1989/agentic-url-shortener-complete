@@ -1,0 +1,3 @@
+package com.example.urlshortener.agents;
+import com.example.urlshortener.orchestrator.*; import java.util.*;
+public class ArchitectureAgent implements Agent { public String name(){return "ArchitectureAgent";} public AgentResult execute(ExecutionContext c){c.decision("architecture","Spring Boot REST service + relational persistence + stateless redirect API + agentic DAG orchestrator");c.putArtifact("architectureComponents",List.of("URL API","Persistence","Agent Orchestrator","Approval Gate","Policy Guard","Audit Trail","Metrics"));return AgentResult.ok("Architecture produced",Map.of());} }

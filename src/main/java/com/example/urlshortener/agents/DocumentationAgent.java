@@ -1,0 +1,3 @@
+package com.example.urlshortener.agents;
+import com.example.urlshortener.orchestrator.*; import java.util.*;
+public class DocumentationAgent implements Agent { public String name(){return "DocumentationAgent";} public AgentResult execute(ExecutionContext c){c.putArtifact("documentation",List.of("README","Architecture overview","Scenario walkthroughs","Testing/trade-offs"));return AgentResult.ok("Documentation package prepared",Map.of());} }

@@ -1,0 +1,1 @@
+package com.example.urlshortener.orchestrator; public enum WorkflowScenario { GREENFIELD,BROWNFIELD,AMBIGUOUS }

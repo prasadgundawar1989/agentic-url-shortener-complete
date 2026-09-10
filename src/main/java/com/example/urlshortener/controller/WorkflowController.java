@@ -1,0 +1,11 @@
+package com.example.urlshortener.controller;
+import com.example.urlshortener.dto.WorkflowResponse; import com.example.urlshortener.orchestrator.*; import org.springframework.web.bind.annotation.*; import java.util.*;
+@RestController @RequestMapping("/api/v1/workflows")
+public class WorkflowController {
+ private final WorkflowEngine engine; private final ScenarioFactory factory; public WorkflowController(WorkflowEngine e,ScenarioFactory f){engine=e;factory=f;}
+ @PostMapping("/scenarios/{scenario}") public Map<String,Object> start(@PathVariable String scenario,@RequestBody(required=false) Map<String,String> body){WorkflowScenario s=parse(scenario);String req=body==null?null:body.get("requirement");if(req==null||req.isBlank())req=factory.defaultRequirement(s);String id=engine.create(s,req,factory.tasks(s));return Map.of("workflowId",id,"scenario",s,"status",engine.execute(id));}
+ @PostMapping("/{id}/approve/{taskId}") public Map<String,Object> approve(@PathVariable String id,@PathVariable String taskId){engine.approve(id,taskId);return Map.of("workflowId",id,"status",engine.execute(id));}
+ @PostMapping("/{id}/replan") public Map<String,Object> replan(@PathVariable String id,@RequestBody Map<String,String>b){String req=Objects.requireNonNull(b.get("requirement"),"requirement is required");String from=b.getOrDefault("fromTask","REQ");engine.replan(id,req,from);return Map.of("workflowId",id,"status",engine.execute(id));}
+ @GetMapping("/{id}") public WorkflowResponse get(@PathVariable String id){WorkflowInstance w=engine.get(id);var tasks=w.tasks().values().stream().map(t->new WorkflowResponse.TaskView(t.id(),t.name(),t.status(),t.attempts(),t.dependencies(),t.requiresApproval(),t.lastError())).toList();return new WorkflowResponse(w.id(),w.scenario(),w.status(),w.context().requirement(),w.context().artifacts(),w.context().decisions(),tasks,engine.audit(id));}
+ private WorkflowScenario parse(String v){try{return WorkflowScenario.valueOf(v.toUpperCase());}catch(Exception e){throw new IllegalArgumentException("scenario must be greenfield, brownfield, or ambiguous");}}
+}

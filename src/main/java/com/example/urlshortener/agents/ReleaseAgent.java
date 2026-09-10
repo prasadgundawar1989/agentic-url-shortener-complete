@@ -1,0 +1,3 @@
+package com.example.urlshortener.agents;
+import com.example.urlshortener.orchestrator.*; import java.util.*;
+public class ReleaseAgent implements Agent { public String name(){return "ReleaseAgent";} public AgentResult execute(ExecutionContext c){c.putArtifact("releaseReadiness",Map.of("status","READY","checks",List.of("tests","validation","docs","approval")));return AgentResult.ok("Release readiness approved",Map.of());} }

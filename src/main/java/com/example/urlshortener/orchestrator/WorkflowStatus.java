@@ -1,0 +1,1 @@
+package com.example.urlshortener.orchestrator; public enum WorkflowStatus { PENDING,RUNNING,WAITING_FOR_APPROVAL,COMPLETED,FAILED,SAFE_STOPPED }
